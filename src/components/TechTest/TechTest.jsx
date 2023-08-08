@@ -5,87 +5,82 @@ import _ from "lodash";
 const TechTest = () => {
 
 
+    //This version is much simpler, just need to use this special method to do everything but its good to know
+    //  const charCounter = (num) => {
+    //      const acumulator = _.countBy(num)
+    //      setResult(acumulator)
+    //      console.log(acumulator)
+    //  }
+
     const [inputValue, setInputValue] = useState("")
 
-    const [result, setResult] = useState(null)
+    const [mostRepeatedChar, setMostRepeatedChar] = useState(null)
 
+    const onInputValueChange =(e) => {
+        const value = e.target.value;
 
-
-    const onInputValueChange = (e) => {
-        setInputValue(e.target.value)
-        //console.log(e.target.value)
+        setInputValue(value)
+        console.log(value)
     }
-    //This version is much simpler, just need to use this special method to do everything but its good to know
-     const charCounter = (num) => {
-         const acumulator = _.countBy(num)
-         setResult(acumulator)
-         console.log(acumulator)
-     }
 
-    // const charCounter = (num) => {
-        
-    //     let acumulator = {}
+    const onEvaluate = () => {
 
-    //     for(let i = 0; i < num.length; i++){
-    //         let element = num[i]
+        if(inputValue.length >= 5 && inputValue.length <= 8){
+            console.log("The number is Valid!")
+            charCounter(inputValue)
+        }else{
+            console.log("The number is Not Valid!")
+        }
+    }
 
-    //         if(acumulator[element]){
-    //             acumulator[element]++
-    //         } else {
-    //             acumulator[element] = 1
-    //         }
-    //     }
+    const charCounter = (num) => {
+        let acumulator = {};
 
-    //     console.log(acumulator)
-    // }
+        for(let i = 0; i < num.length; i++){
+            let currentCharacter = num[i];
+
+            if(acumulator[currentCharacter]){
+                acumulator[currentCharacter]++
+            }else{
+                acumulator[currentCharacter] = 1
+            }
+        }
+        console.log(acumulator)
+        findMostRepeatedCharacter(acumulator)
+    }
 
 
-    const findMostRepeatedNumber = () => {
+    const findMostRepeatedCharacter = (result) => {
         if(!result) return;
 
         let mostRepeatedCharacter = ""
-        let maxCount = 0
+        let maxReps = 0
 
-        for(const char in result){
-            if(result[char] > maxCount){
-                maxCount = result[char]
-                mostRepeatedCharacter = char
+        for(const Char in result){
+            let currentCharacterReps = result[Char]
+            if(currentCharacterReps > maxReps){
+                maxReps = currentCharacterReps
+                mostRepeatedCharacter = Char
             }
         }
-
-        console.log(mostRepeatedCharacter)
-    }
-
-    
-
-
-    const onEvaluate = () => {
-        if(inputValue.length >= 5 && inputValue.length <= 8){
-            console.log("The number is valid")
-            charCounter(inputValue)
-        } else{
-            console.log("The number is NOT valid")
-        }
+        setMostRepeatedChar(mostRepeatedCharacter)
     }
 
   return (
     <div>
 
+     <input 
+     placeholder='Write a number...'
+     value={inputValue}
+     onChange={onInputValueChange}
+     type="number" />   
 
-        <input 
-        value={inputValue}
-        onChange={onInputValueChange}
-        placeholder='Write a number'
-        type="number" />
+    <button
+    onClick={onEvaluate}
+    >Evaluate</button>
 
-        <button
-        onClick={onEvaluate}
-        >Evaluate</button>
 
-        <button
-        onClick={findMostRepeatedNumber}
-        >Most Repeated Character</button>
-
+    {mostRepeatedChar ? <h1>The Most Repeated Character is {mostRepeatedChar}!!!</h1> : null}
         
 
     </div>

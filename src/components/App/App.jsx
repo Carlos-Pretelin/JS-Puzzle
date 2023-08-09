@@ -3,6 +3,7 @@ import "./App.scss"
 import TechTest from '../TechTest/TechTest'
 import ArrayMethods from '../ArrayMethods/ArrayMethods'
 import FruitsBasket from '../ArrayMethods/fruitsBasket1/FruitsBasket'
+import SimpleTodoApp from '../SimpleTodoApp/SimpleTodoApp'
 
 
 const App = () => {
@@ -11,9 +12,9 @@ const App = () => {
       
 
       {/* <TechTest/> */}
-      {/* <ArrayMethods/> */}
-
-      <FruitsBasket/>
+      {/* <ArrayMethods/>  */}
+      <SimpleTodoApp/>
+      {/* <FruitsBasket/> */}
 
 
 

@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react'
 import PushPop from './PushPop/PushPop'
 import ShiftUnshift from './ShiftUnshift/ShiftUnshift'
 import Concat from './Concat/Concat'
+import Slice from './Slice/Slice'
 
 const ArrayMethods = () => {
 
+
+    
   
    
   return (
@@ -14,7 +17,8 @@ const ArrayMethods = () => {
         {/* <PushPop/> */}
         {/* <ShiftUnshift/> */}
 
-        <Concat/>
+        {/* <Concat/> */}
+        <Slice/>
         
 
     </div>

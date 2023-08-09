@@ -5,7 +5,23 @@ const SimpleTodoApp = () => {
 
   const [inputValue, setInputValue] = useState("")
 
-  const [todos, setTodos] = useState([])
+
+  const defaultTodos = [{
+    text: "This is the First Todo",
+    completed: false
+  },
+  {
+    text: "This is the Second Todo",
+    completed: false
+  },
+  {
+    text: "This is the Third Todo",
+    completed: false
+  }
+]
+
+  const [todos, setTodos] = useState(defaultTodos)
+
 
   const onInputValueChange = (e) => {
     const value = e.target.value;
@@ -39,13 +55,25 @@ const SimpleTodoApp = () => {
 
   const onDeleteTodo = (text) => {
 
-    let todoIndex = todos.findIndex( todo => text === todo.text);
-
+    let todoIndex = todos.findIndex(todo => text === todo.text)
+    
     let updatedTodos = [...todos]
 
     updatedTodos.splice(todoIndex, 1)
+    
 
     setTodos(updatedTodos)
+  }
+
+
+  const onCompleteTodo = (todo) => {
+    
+    let modifiedTodo = {...todo, completed: true}
+
+    let updatedTodos = todos.map( item => ( todo === item ? modifiedTodo : item))
+
+    setTodos(updatedTodos)
+
   }
 
   return (
@@ -69,12 +97,20 @@ const SimpleTodoApp = () => {
             <button
             onClick={()=> onDeleteTodo(item.text)}
             >X</button>
+
+            <button
+            onClick={()=> onCompleteTodo(item)}
+            >Complete</button>
+
+            {item.completed ? <h3>El todo Esta Completado!!!</h3> : null}
+
+
           </div>
+
+          
         ))}
 
-        <button
-        onClick={() => onDeleteTodo()}
-        >Delete All To-dos</button>
+        
     </div>
   )
 }

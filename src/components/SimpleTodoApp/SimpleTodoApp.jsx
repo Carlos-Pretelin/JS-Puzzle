@@ -28,15 +28,25 @@ const SimpleTodoApp = () => {
 
   }
 
-  const onDeleteTodo = () => {
+  // const onDeleteTodo = () => {
+
+  //   let updatedTodos = [...todos]
+
+  //   updatedTodos.splice(0, updatedTodos.length)
+
+  //   setTodos(updatedTodos)
+  // }
+
+  const onDeleteTodo = (text) => {
+
+    let todoIndex = todos.findIndex( todo => text === todo.text);
 
     let updatedTodos = [...todos]
 
-    updatedTodos.splice(0, updatedTodos.length)
+    updatedTodos.splice(todoIndex, 1)
 
     setTodos(updatedTodos)
   }
-
 
   return (
     <div>
@@ -56,6 +66,9 @@ const SimpleTodoApp = () => {
         {todos.map( (item, index)=> (
           <div key={index}>
             <h2>{item.text}</h2>
+            <button
+            onClick={()=> onDeleteTodo(item.text)}
+            >X</button>
           </div>
         ))}
 

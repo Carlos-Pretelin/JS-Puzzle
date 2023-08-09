@@ -12,8 +12,8 @@ const App = () => {
       
 
       {/* <TechTest/> */}
-      {/* <ArrayMethods/>  */}
-      <SimpleTodoApp/>
+      <ArrayMethods/>
+      {/* <SimpleTodoApp/> */}
       {/* <FruitsBasket/> */}
 
 
